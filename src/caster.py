@@ -1,5 +1,4 @@
 from argparse import ArgumentParser
-import io
 from typing import Any, List
 
 from crowdin_api import CrowdinClient
@@ -72,8 +71,8 @@ def translate_crowdin(args):
     translate_xliff(fake_args)
     if not args.dry_run:
         client = CrowdinClient(token=token)
-        storageId = client.storages.add_storage(io.open(file, "rb"))["data"]["id"]
-        client.translations.upload_translation(project_id, "zh-TW", storageId, fileId=int(args.file))
+        storageId = client.storages.add_storage(open(file, "rb"))["data"]["id"]
+        client.translations.upload_translation(project_id, "zh-TW", storageId, int(args.file))
 
 
 if __name__ == "__main__":
