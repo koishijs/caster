@@ -29,6 +29,7 @@ jobs:
       - name: Translate
         run: |
           python src/caster.py \
+            remote \
             --project ${{ secrets.PROJECT_ID }} \
             --token ${{ secrets.CROWDIN_TOKEN }} \
             --file ${{ github.event.inputs.fileId }}
