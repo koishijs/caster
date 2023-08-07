@@ -72,7 +72,7 @@ def translate_crowdin(args):
     translate_xliff(fake_args)
     if not args.dry_run:
         client = CrowdinClient(token=token)
-        storageId = client.storages.add_storage(open(file, "rb"))["data"]["id"]
+        storageId = client.storages.add_storage(open(output_file, "rb"))["data"]["id"]
         client.translations.upload_translation(project_id, "zh-TW", storageId, int(args.file))
 
 
