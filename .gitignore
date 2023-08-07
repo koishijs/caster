@@ -1,0 +1,4 @@
+venv/
+temp/
+!temp/dummy.txt
+.vscode/
