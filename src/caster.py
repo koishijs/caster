@@ -30,8 +30,9 @@ def translate_xliff(args: Any):
             target: etree._Element = unit.xpath("ns:target", namespaces=ns)[0]
             if source.text is None:
                 continue
-            if unit.get("translate") != "no":
+            if target.get("state") == "needs-translation" and unit.get("translate") != "no":
                 target.text = translate(source.text)
+                target.set("state", "translated")
         except:
             continue
 
