@@ -31,5 +31,5 @@ jobs:
           python src/caster.py \
             remote \
             --project ${{ secrets.PROJECT_ID }} \
-            --token ${{ secrets.WORKFLOW_TOKEN }} \
+            --token ${{ secrets.CROWDIN_TOKEN }} \
             --file ${{ github.event.inputs.fileId }}
