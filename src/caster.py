@@ -41,6 +41,17 @@ def translate_xliff(args: Any):
     with open(output_file, "w") as f:
         f.write(result)
 
+def list_files_in_crowdin(project_id: str, token: str) -> List[str]:
+    """List all files from Crowdin."""
+    client = CrowdinClient(token=token)
+    files = client.source_files.get_(project_id)
+    return [file["data"]["id"] for file in files["data"]]
+
+def get_progress(project_id: str, file_id: int, token: str, limit: int = 25) -> float:
+    """Get the translation progress."""
+    client = CrowdinClient(token=token)
+    progress = client.translation_status.get_project_progress(project_id, file_id, None, None, limit)
+    return progress["data"]["words"]["translated"] / progress["data"]["words"]["total"]
 
 def download_xliff_from_crowdin(project_id: str, token: str, file_id: str = None):
     """Download an XLIFF file from Crowdin."""
